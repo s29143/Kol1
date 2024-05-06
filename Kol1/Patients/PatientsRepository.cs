@@ -49,6 +49,7 @@ public class PatientsRepository : IPatientsRepository
             await command.ExecuteNonQueryAsync();
             command.CommandText = "DELETE FROM s29143.Prescription WHERE IdPatient=@Id";
             command.Parameters.Clear();
+            command.Parameters.AddWithValue("Id", id);
             int numbers = await command.ExecuteNonQueryAsync();
             await transaction.CommitAsync();
             return numbers > 0;
