@@ -15,14 +15,14 @@ public class MedicamentsController : ControllerBase
     }
 
 
-    [HttpGet]
+    [HttpGet("/api/medicament/{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetById([FromRoute] int id)
     {
         try
         {
-            var medicament = await _medicamentService.getById(id);
+            var medicament = await _medicamentService.GetById(id);
             return Ok(medicament);
         }
         catch (NotFoundException e)
